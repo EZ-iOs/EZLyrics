@@ -9,8 +9,8 @@
 /* Begin PBXBuildFile section */
 		EC3BEB351ECDA9C4003CF26A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3BEB341ECDA9C4003CF26A /* AppDelegate.swift */; };
 		EC3BEB3C1ECDA9C4003CF26A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC3BEB3B1ECDA9C4003CF26A /* Assets.xcassets */; };
-		EC3BEB481ECDADAD003CF26A /* SearchPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3BEB461ECDADAD003CF26A /* SearchPageController.swift */; };
-		EC3BEB491ECDADAD003CF26A /* SearchPageController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC3BEB471ECDADAD003CF26A /* SearchPageController.xib */; };
+		EC3BEB481ECDADAD003CF26A /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3BEB461ECDADAD003CF26A /* SearchViewController.swift */; };
+		EC3BEB491ECDADAD003CF26A /* SearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC3BEB471ECDADAD003CF26A /* SearchViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -18,8 +18,8 @@
 		EC3BEB341ECDA9C4003CF26A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EC3BEB3B1ECDA9C4003CF26A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EC3BEB401ECDA9C4003CF26A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		EC3BEB461ECDADAD003CF26A /* SearchPageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchPageController.swift; sourceTree = "<group>"; };
-		EC3BEB471ECDADAD003CF26A /* SearchPageController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchPageController.xib; sourceTree = "<group>"; };
+		EC3BEB461ECDADAD003CF26A /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		EC3BEB471ECDADAD003CF26A /* SearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,8 +52,8 @@
 		EC3BEB331ECDA9C4003CF26A /* EZLyrics */ = {
 			isa = PBXGroup;
 			children = (
-				EC3BEB461ECDADAD003CF26A /* SearchPageController.swift */,
-				EC3BEB471ECDADAD003CF26A /* SearchPageController.xib */,
+				EC3BEB461ECDADAD003CF26A /* SearchViewController.swift */,
+				EC3BEB471ECDADAD003CF26A /* SearchViewController.xib */,
 				EC3BEB341ECDA9C4003CF26A /* AppDelegate.swift */,
 				EC3BEB3B1ECDA9C4003CF26A /* Assets.xcassets */,
 				EC3BEB401ECDA9C4003CF26A /* Info.plist */,
@@ -120,7 +120,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EC3BEB491ECDADAD003CF26A /* SearchPageController.xib in Resources */,
+				EC3BEB491ECDADAD003CF26A /* SearchViewController.xib in Resources */,
 				EC3BEB3C1ECDA9C4003CF26A /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -133,7 +133,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EC3BEB351ECDA9C4003CF26A /* AppDelegate.swift in Sources */,
-				EC3BEB481ECDADAD003CF26A /* SearchPageController.swift in Sources */,
+				EC3BEB481ECDADAD003CF26A /* SearchViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
