@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EC2A1CCF1EE827F900E98C08 /* LyricRetriever.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2A1CCE1EE827F900E98C08 /* LyricRetriever.swift */; };
+		EC2A1CD11EE8317200E98C08 /* LyricFact.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2A1CD01EE8317200E98C08 /* LyricFact.swift */; };
 		EC3BEB351ECDA9C4003CF26A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3BEB341ECDA9C4003CF26A /* AppDelegate.swift */; };
 		EC3BEB3C1ECDA9C4003CF26A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC3BEB3B1ECDA9C4003CF26A /* Assets.xcassets */; };
 		EC3BEB481ECDADAD003CF26A /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3BEB461ECDADAD003CF26A /* SearchViewController.swift */; };
@@ -14,6 +16,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EC2A1CCE1EE827F900E98C08 /* LyricRetriever.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LyricRetriever.swift; sourceTree = "<group>"; };
+		EC2A1CD01EE8317200E98C08 /* LyricFact.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LyricFact.swift; sourceTree = "<group>"; };
 		EC3BEB311ECDA9C4003CF26A /* EZLyrics.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EZLyrics.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC3BEB341ECDA9C4003CF26A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EC3BEB3B1ECDA9C4003CF26A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -57,6 +61,8 @@
 				EC3BEB341ECDA9C4003CF26A /* AppDelegate.swift */,
 				EC3BEB3B1ECDA9C4003CF26A /* Assets.xcassets */,
 				EC3BEB401ECDA9C4003CF26A /* Info.plist */,
+				EC2A1CCE1EE827F900E98C08 /* LyricRetriever.swift */,
+				EC2A1CD01EE8317200E98C08 /* LyricFact.swift */,
 			);
 			path = EZLyrics;
 			sourceTree = "<group>";
@@ -133,7 +139,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				EC3BEB351ECDA9C4003CF26A /* AppDelegate.swift in Sources */,
+				EC2A1CCF1EE827F900E98C08 /* LyricRetriever.swift in Sources */,
 				EC3BEB481ECDADAD003CF26A /* SearchViewController.swift in Sources */,
+				EC2A1CD11EE8317200E98C08 /* LyricFact.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
