@@ -13,13 +13,22 @@ class SearchViewController: UIViewController {
     @IBOutlet var searchBar: UISearchBar!
     @IBOutlet var resultTable: UITableView!
     
-    
+    let retriever: LyricRetriever = LyricRetriever()
+    var lyricsFact: [LyricFact] = []
+
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        retriever.searchListByArtistSong(artist: "Metallica", song: "Fuel", block: {(dataRetrieve, error) in
+            if (dataRetrieve != nil) {
+                dataRetrieve?.forEach({(item: LyricFact) in
+                
+                    print(item.Artist ?? "Toto")
+                })
+            }
+        })
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
