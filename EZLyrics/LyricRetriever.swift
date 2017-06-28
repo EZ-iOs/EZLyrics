@@ -27,6 +27,8 @@ class LyricRetriever: NSObject, XMLParserDelegate {
         let fullUri = baseUri + "artist=" + artist + "&song=" + song
         let url = URL(string: fullUri)
         
+        items.removeAll()
+        
         let parser = XMLParser(contentsOf: url!)
         parser?.delegate = self
         var success: Bool

@@ -54,10 +54,12 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func getItem() {
+        
         let songName = self.songName.replacingOccurrences(of: " ", with: "%20")
         let artistName = self.artistName.replacingOccurrences(of: " ", with: "%20")
         
         retriever.searchListByArtistSong(artist: artistName, song: songName, block: {(dataRetrieve, error) in
+            self.lyricsFact.removeAll()
             if (dataRetrieve != nil) {
                 dataRetrieve?.forEach({(item: LyricFact) in
                     self.lyricsFact.append(item)
@@ -88,10 +90,12 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //let lyrics = self.lyricsFact[indexPath.row]
-        //let personController = VenueController(nibName: "VenueController", bundle: nil, venue: venue)
+        let lyrics = self.lyricsFact[indexPath.row]
         
-       // self.navigationController?.pushViewController(personController, animated: true)
+        
+        let lyricController = LyricViewController(nibName: "LyricViewController", bundle: nil, item: lyrics)
+        
+        self.navigationController?.pushViewController(lyricController, animated: true)
     }
     
 
