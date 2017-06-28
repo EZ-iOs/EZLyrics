@@ -24,6 +24,9 @@ class SearchViewController: UIViewController {
                 dataRetrieve?.forEach({(item: LyricFact) in
                 
                     print(item.Artist ?? "Toto")
+                    print(item.Song ?? "We Are the best")
+                    print(item.LyricId ?? "default ID")
+                    print(item.LyricChecksum ?? "Default CheckSum")
                 })
             }
         })
