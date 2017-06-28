@@ -8,28 +8,29 @@
 
 import UIKit
 
-class SearchViewController: UIViewController {
+class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
 
-    @IBOutlet var searchBar: UISearchBar!
+    @IBOutlet var artistSearchBar: UISearchBar!
+    @IBOutlet var songSearchBar: UISearchBar!
     @IBOutlet var resultTable: UITableView!
     
     let retriever: LyricRetriever = LyricRetriever()
     var lyricsFact: [LyricFact] = []
+    
+    var artistName: String = ""
+    var songName: String = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        retriever.searchListByArtistSong(artist: "Metallica", song: "Fuel", block: {(dataRetrieve, error) in
-            if (dataRetrieve != nil) {
-                dataRetrieve?.forEach({(item: LyricFact) in
-                
-                    print(item.Artist ?? "Toto")
-                    print(item.Song ?? "We Are the best")
-                    print(item.LyricId ?? "default ID")
-                    print(item.LyricChecksum ?? "Default CheckSum")
-                })
-            }
-        })
+        self.resultTable.delegate = self
+        self.resultTable.dataSource = self
+        self.artistSearchBar.delegate = self
+        self.songSearchBar.delegate = self
+        
+        
+        self.resultTable.register(UITableViewCell.classForCoder(), forCellReuseIdentifier: "itemCell")
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -37,15 +38,62 @@ class SearchViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchtext: String) {
+        if(searchBar == artistSearchBar) {
+            self.artistName = searchtext
+        } else {
+            self.songName = searchtext
+        }
     }
-    */
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        
+        if(artistName.isEmpty != true && songName.isEmpty != true) {
+            getItem()
+        }
+    }
+    
+    func getItem() {
+        let songName = self.songName.replacingOccurrences(of: " ", with: "%20")
+        let artistName = self.artistName.replacingOccurrences(of: " ", with: "%20")
+        
+        retriever.searchListByArtistSong(artist: artistName, song: songName, block: {(dataRetrieve, error) in
+            if (dataRetrieve != nil) {
+                dataRetrieve?.forEach({(item: LyricFact) in
+                    self.lyricsFact.append(item)
+                    
+                    print(item.Artist ?? "Toto")
+                    print(item.Song ?? "We Are the best")
+                    print(item.LyricId ?? "default ID")
+                    print(item.LyricChecksum ?? "Default CheckSum")
+                })
+            }
+            DispatchQueue.main.async(execute: {
+                self.resultTable.reloadData()
+            })
+        })
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.lyricsFact.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "itemCell", for: indexPath)
+        
+        cell.textLabel?.text = self.lyricsFact[indexPath.row].Song
+        cell.detailTextLabel?.text = self.lyricsFact[indexPath.row].Artist
+        //cell.imageView?.image = UIImage(named: "owl")
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        //let lyrics = self.lyricsFact[indexPath.row]
+        //let personController = VenueController(nibName: "VenueController", bundle: nil, venue: venue)
+        
+       // self.navigationController?.pushViewController(personController, animated: true)
+    }
+    
+
 
 }

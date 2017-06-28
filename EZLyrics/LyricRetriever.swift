@@ -9,6 +9,7 @@
 import UIKit
 
 typealias RetrieveLyricsBlock = (Array<LyricFact>?, Error?) -> Void
+typealias RetrieveLyricsSring = (String?, Error?) -> Void
 
 class LyricRetriever: NSObject, XMLParserDelegate {
     static let BASE_API_URL = "http://api.chartlyrics.com/apiv1.asmx/"
@@ -19,6 +20,7 @@ class LyricRetriever: NSObject, XMLParserDelegate {
     var foundCharacters:String = ""
     var items: [LyricFact] = []
     var item = LyricFact()
+    var lyrics = String()
     
     func searchListByArtistSong(artist: String, song: String, block: @escaping RetrieveLyricsBlock) {
         let baseUri = LyricRetriever.BASE_API_URL + LyricRetriever.SEARCH_LYRIC_URL
@@ -54,6 +56,22 @@ class LyricRetriever: NSObject, XMLParserDelegate {
         
     }
     
+    func getLyrics(item: LyricFact, block: @escaping RetrieveLyricsSring) {
+        let baseUri = LyricRetriever.BASE_API_URL + LyricRetriever.GET_LYRIC
+        let fullUri = baseUri + "lyricId=" + item.LyricId! + "&lyricCheckSum=" + item.LyricChecksum!
+        let url = URL(string: fullUri)
+        
+        let parser = XMLParser(contentsOf: url!)
+        parser?.delegate = self
+        var success: Bool
+        
+        success = (parser?.parse())!
+        if success {
+            print("parse success!")
+            block(lyrics, nil)
+        }
+    }
+    
     func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]) {
         if(elementName=="SearchLyricResult")
         {
@@ -69,29 +87,33 @@ class LyricRetriever: NSObject, XMLParserDelegate {
         
         if(elementName=="Artist")
         {
-            item.Artist = self.foundCharacters
+            item.Artist = self.foundCharacters.replacingOccurrences(of: "\n", with: "")
             
         }
         if(elementName=="Song")
         {
-            item.Song = self.foundCharacters
+            item.Song = self.foundCharacters.replacingOccurrences(of: "\n", with: "")
             
         }
         if(elementName=="TrackId")
         {
-            item.TrackId = self.foundCharacters
+            item.TrackId = self.foundCharacters.replacingOccurrences(of: "\n", with: "").replacingOccurrences(of: " ", with: "")
             
         }
         if(elementName=="LyricChecksum")
         {
-            item.LyricChecksum = self.foundCharacters
+            item.LyricChecksum = self.foundCharacters.replacingOccurrences(of: "\n", with: "").replacingOccurrences(of: " ", with: "")
             
         }
         
         if(elementName=="LyricId")
         {
-            item.LyricId = self.foundCharacters
+            item.LyricId = self.foundCharacters.replacingOccurrences(of: "\n", with: "").replacingOccurrences(of: " ", with: "")
             
+        }
+        if(elementName == "Lyric"){
+            lyrics = self.foundCharacters
+            print(lyrics, "NotFound")
         }
         
         if(elementName == "SearchLyricResult") {
@@ -103,6 +125,8 @@ class LyricRetriever: NSObject, XMLParserDelegate {
             tempItem.TrackId = item.TrackId
             self.items.append(tempItem)
         }
+        
+        
         
         self.foundCharacters = ""
     }
