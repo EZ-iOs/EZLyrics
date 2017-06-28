@@ -85,7 +85,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         cell.textLabel?.text = self.lyricsFact[indexPath.row].Song
         cell.detailTextLabel?.text = self.lyricsFact[indexPath.row].Artist
-        //cell.imageView?.image = UIImage(named: "owl")
+        cell.imageView?.image = UIImage(named: "Image")
         return cell
     }
     

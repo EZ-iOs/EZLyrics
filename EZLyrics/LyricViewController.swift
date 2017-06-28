@@ -10,6 +10,7 @@ import UIKit
 
 class LyricViewController: UIViewController {
     
+    @IBOutlet var songLabel: UILabel!
     @IBOutlet var lyricTextBlock: UITextView!
    
     let item: LyricFact
@@ -27,6 +28,7 @@ class LyricViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.songLabel.text = self.item.Song! + "\n By " + self.item.Artist!
         self.lyricTextBlock.text = "No lyric avaible for this song"
         retriever.getLyrics(item: self.item, block: {(lyric, error) in
             if(lyric?.isEmpty != true) {
